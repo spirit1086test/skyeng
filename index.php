@@ -47,26 +47,20 @@ function sum($a,$b)
         }  
         elseif($withOutMinus_A>$withOutMinus_B)
         {
+            if(in_array(1, $byZero))
+            {
+              // не последняя справа налево  
+              $numA = $numA-1;
+              $byZero=[];
+            }        
+            
             if($numA<$numB)
             {
-               if(in_array(1, $byZero))
-               {
-                  $numA = (($size-1)==$i) ? $numA-1 : $numA+10-1;
-                  unset($byZero[count($byZero)-1]);
-               }
-               else
-               {
-                  $numA+=10;
-               }
-               $byZero[]= 1;
+                $numA+= 10;
+                $byZero[]= 1;
             }    
             else
             {
-               if(in_array(1, $byZero))
-               {
-                 $numA = $numA-1;  
-                 unset($byZero[count($byZero)-1]);
-               } 
                if($numA==0 && (($size-1)>$i)) {
                     $numA+=10;
                     $byZero[]= 1;
@@ -78,32 +72,26 @@ function sum($a,$b)
         }
         elseif($withOutMinus_B>$withOutMinus_A)
         {
+            if(in_array(1, $byZero))
+            {
+              // не последняя справа налево  
+              $numB = $numB-1;
+              $byZero=[];
+            }        
+            
             if($numB<$numA)
             {
-               if(in_array(1, $byZero))
-               {
-                  $numB = (($size-1)==$i) ? $numB-1 : $numB+10-1;
-                  unset($byZero[count($byZero)-1]);
-               }
-               else
-               {
-                  $numB+=10;
-               }
-               $byZero[]= 1;
-            }
+                $numB+= 10;
+                $byZero[]= 1;
+            }    
             else
             {
-               if(in_array(1, $byZero))
-               {
-                 $numB = $numB-1;  
-                 unset($byZero[count($byZero)-1]);
-               } 
                if($numB==0 && (($size-1)>$i)) {
                     $numB+=10;
                     $byZero[]= 1;
                }
             }    
-           
+            
             $sum = $numB-$numA;
             $minus = ($is_minusB=='-') ? $is_minusB : '';
         } 
@@ -134,3 +122,5 @@ function sum($a,$b)
     
     return $minus.ltrim($result,0);
 }        
+
+echo sum('123435465678678636278','-54657567686786786');
