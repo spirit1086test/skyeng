@@ -47,9 +47,9 @@ function sum($a,$b)
         }  
         elseif($withOutMinus_A>$withOutMinus_B)
         {
+            // если занимали десяток на предыдущем этапе
             if(in_array(1, $byZero))
             {
-              // не последняя справа налево  
               $numA = $numA-1;
               $byZero=[];
             }        
@@ -59,22 +59,16 @@ function sum($a,$b)
                 $numA+= 10;
                 $byZero[]= 1;
             }    
-            else
-            {
-               if($numA==0 && (($size-1)>$i)) {
-                    $numA+=10;
-                    $byZero[]= 1;
-               }
-            }    
+            
             
             $sum = $numA-$numB;
             $minus = ($is_minusA=='-') ? $is_minusA : '';
         }
         elseif($withOutMinus_B>$withOutMinus_A)
         {
+            // если занимали десяток на предыдущем этапе
             if(in_array(1, $byZero))
             {
-              // не последняя справа налево  
               $numB = $numB-1;
               $byZero=[];
             }        
@@ -83,13 +77,6 @@ function sum($a,$b)
             {
                 $numB+= 10;
                 $byZero[]= 1;
-            }    
-            else
-            {
-               if($numB==0 && (($size-1)>$i)) {
-                    $numB+=10;
-                    $byZero[]= 1;
-               }
             }    
             
             $sum = $numB-$numA;
@@ -123,4 +110,3 @@ function sum($a,$b)
     return $minus.ltrim($result,0);
 }        
 
-echo sum('123435465678678636278','-54657567686786786');
